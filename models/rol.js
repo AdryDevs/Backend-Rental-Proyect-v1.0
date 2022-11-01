@@ -18,4 +18,6 @@ Rol.init({
   timestamps: false
 })
 
+
+
 module.exports = Rol

@@ -29,11 +29,11 @@ router.post('/register', async (req, res) => {
         let data = req.body
         let resp = await User.create({
             mail: data.mail,
-            foto: data.foto,
-            sexo: data.sexo,
-            fecha_nacimiento: data.fecha_nacimiento,
-            telefono: data.telefono,
-            contrasena: data.contrasena
+            picture: data.picture,
+            gender: data.gender,
+            age: data.age,
+            telephone: data.telephone,
+            password: data.password
         })
 
         res.send(resp)

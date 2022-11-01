@@ -6,7 +6,7 @@ const db = require('./db/db');
 
 const router = require('./router');
 
-// require('./models/associations');
+require('./models/associations');
 
 require('dotenv').config();
 console.log(process.env);
@@ -22,9 +22,9 @@ app.use(router);
 // Listening to the port 3000 and logging a message to the console
 
 app.listen(PORT, () => {
-    console.log(`Server amazingly running on port ${PORT}, YAHOOOO!!!`);
+    console.log(`Server amazingly running on port ${PORT}, all good!!`);
     db.authenticate().then(()=> {
-        console.log("Successfully authenticated to the database");
+        console.log("Successfully authenticated to the database located at Railway");
     }).catch(error => {
         console.log('Connection to the database refused due to ' + error)
     })
