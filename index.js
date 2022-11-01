@@ -18,6 +18,9 @@ const PORT = 3000;
 app.use(express.json());
 app.use(router);
 
+
+// Listening to the port 3000 and logging a message to the console
+
 app.listen(PORT, () => {
     console.log(`Server amazingly running on port ${PORT}, YAHOOOO!!!`);
     db.authenticate().then(()=> {
