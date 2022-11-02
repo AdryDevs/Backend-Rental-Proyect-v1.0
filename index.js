@@ -6,7 +6,7 @@ const db = require('./db/db');
 
 const router = require('./router');
 
-require('./models/associations');
+require('./models/associations'); 
 
 require('dotenv').config();
 console.log(process.env);

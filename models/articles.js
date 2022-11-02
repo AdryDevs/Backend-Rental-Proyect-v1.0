@@ -5,7 +5,7 @@ class Article extends Model {}
 
 Article.init({
     id_article: {
-        type: DataTypes.INTEGER,
+        type: STRING,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true
