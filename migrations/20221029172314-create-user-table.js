@@ -10,7 +10,7 @@ module.exports = {
         allowNull: false
       },
       picture: Sequelize.STRING,
-      gender: Sequelize.ENUM('Hombre', 'Mujer', 'Otro'),
+      gender: Sequelize.ENUM('Hombre', 'Mujer'),
       age: Sequelize.DATEONLY,
       telephone: {
         type: Sequelize.STRING

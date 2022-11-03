@@ -14,7 +14,7 @@ User.init({
         }
     },
     picture: DataTypes.STRING,
-    gender: DataTypes.ENUM('Male', 'Female','Otro'),
+    gender: DataTypes.ENUM('Male', 'Female'),
     age: DataTypes.DATEONLY,
     telephone: {
         type: DataTypes.STRING,

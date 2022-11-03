@@ -10,7 +10,6 @@ const db = require('../db/db')
 
 //CRUD READ
 
-
     //Get the mail if a user
 router.get('/findID/:mail', (req, res) => {
     let mail = req.params.mail
