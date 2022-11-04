@@ -1,13 +1,8 @@
 const express = require('express');
-
 const app = express();
-
 const db = require('./db/db');
-
 const router = require('./router');
-
 require('./models/associations'); 
-
 require('dotenv').config();
 console.log(process.env);
 
@@ -17,7 +12,6 @@ const PORT = 3000;
 
 app.use(express.json());
 app.use(router);
-
 
 // Listening to the port 3000 and logging a message to the console
 
