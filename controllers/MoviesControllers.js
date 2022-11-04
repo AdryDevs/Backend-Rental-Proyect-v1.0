@@ -1,5 +1,7 @@
-const MovieModel = require("../models/movie.model.js");
-const { movieFindOne } = require("../services/movies.services.js")
+// Controller for the movies
+
+const MovieModel = require("../models/movies.js");
+// const { movieFindOne } = require("../services/movies.services.js") TODO
 
 const moviesGetAllController = async (req, res) => {
   const queryParameters = req.query || {};
@@ -67,7 +69,7 @@ const moviesPatchController = async (req, res) => {
 
 //find all movies rated more than 8
 
-moviesControllers.getMoviesRated = async (req, res) => {
+const moviesRatedController = async (req, res) => {
     const movies = await Movies.findAll({
         where: {
             rating: {
@@ -78,20 +80,9 @@ moviesControllers.getMoviesRated = async (req, res) => {
     res.json(movies);
 }
 
-/* This is a function that deletes a movie from the database. */
-moviesControllers.deleteMovie = async (req, res) => {
-    const id = req.params.id;
-    const movie = await Movies.destroy({
-        where: {
-            id: id
-        }
-    });
-    res.json(movie);
-}
-
 //find a movie by id
 
-moviesControllers.getMovieById = async (req, res) => {
+const moviesByIdController = async (req, res) => {
     const id = req.params.id;
     const movie = await Movies.findOne({
         where: {
@@ -103,7 +94,7 @@ moviesControllers.getMovieById = async (req, res) => {
 
 //find a movie by title
 
-moviesControllers.getMovieByTitle = async (req, res) => {
+const moviesByTitleController = async (req, res) => {
     const title = req.params.title;
     const movie = await Movies.findOne({
         where: {
@@ -120,7 +111,9 @@ module.exports = {
     moviesDeleteController,
     moviesPutController,
     moviesPatchController,
-    moviesContr
+    moviesRatedController,
+    moviesByIdController,
+    moviesByTitleController
 };
 
 

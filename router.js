@@ -1,13 +1,12 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
-const UserRoutes = require('./views/UserRoutes')
-// const ArticlesRoutes = require('./views/ProfileRoutes')
+const UserRoutes = require('./views/UserRoutes');
+const MoviesRoutes = require('./views/MoviesRoutes');
+const SeriesRoutes = require('./views/SeriesRoutes');
 
+router.use('/users', UserRoutes);
+router.use('/movies', MoviesRoutes);
+router.use('/series', SeriesRoutes);
 
-// Importing the routes from the routes folder and then using it in the router
-router.use('/user', UserRoutes)
-// router.use('/articles', ArticlesRoutes)
-
-
-module.exports = router
+module.exports = router;

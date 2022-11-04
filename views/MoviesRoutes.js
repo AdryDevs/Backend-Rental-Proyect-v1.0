@@ -1,7 +1,7 @@
-// A router for the movie model.
+// A router for the movie model
 
 const express = require("express");
-const moviesRouter = express.Router();
+const moviesRoutes = express.Router();
 
 const {
     moviesGetAllController,
@@ -10,14 +10,20 @@ const {
     moviesDeleteController,
     moviesPutController,
     moviesPatchController,
-} = require("../controllers/movies.controllers.js");
+    moviesRatedController,
+    movieByIdController,
+    movieByTitleController
+} = require("../controllers/MoviesControllers.js");
 
-moviesRouter.get("/", moviesGetAllController);
-moviesRouter.get("/:id", moviesGetOneController);
-moviesRouter.post("/", moviesCreateController);
-moviesRouter.delete("/:id", moviesDeleteController);
-moviesRouter.put("/:id", moviesPutController);
-moviesRouter.patch("/:id", moviesPatchController);
+moviesRoutes.get("/", moviesGetAllController);
+moviesRoutes.get("/:id", moviesGetOneController);
+moviesRoutes.post("/", moviesCreateController);
+moviesRoutes.delete("/:id", moviesDeleteController);
+moviesRoutes.put("/:id", moviesPutController);
+moviesRoutes.patch("/:id", moviesPatchController);
+moviesRoutes.get("/rated", moviesRatedController);
+moviesRoutes.get("/id/:id", movieByIdController);
+moviesRoutes.get("/title/:title", movieByTitleController);
 
 
-module.exports = moviesRouter;
+module.exports = moviesRoutes;
