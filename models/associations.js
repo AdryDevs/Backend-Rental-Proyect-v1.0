@@ -1,9 +1,9 @@
 // Importing the models
 
-const Rol = require('..models/rol');
-const User = require('..models/user');
-const Movies = require('..models/movies');
-const Series = require('..models/series'); 
+const Rol = require('./rol');
+const User = require('./user');
+const Movies = require('./movies');
+const Series = require('./series'); 
 
 
 // Creating a many-to-many relationship between the User and Rol models
@@ -14,7 +14,7 @@ Rol.belongsToMany(User, { through: "user-rol" });
 // Creating a one-to-many relationship between the User and Movies models
 
 User.hasMany(Movies, { foreignKey: 'id_user' });
-Movie.belongsTo(User, { foreignKey: 'id_user' });
+Movies.belongsTo(User, { foreignKey: 'id_user' });
 
 // Creating a one-to-many relationship between the User and Serie models
 
