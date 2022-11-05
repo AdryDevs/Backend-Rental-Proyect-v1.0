@@ -1,5 +1,3 @@
-// A router for the movie model
-
 const express = require("express");
 const moviesRoutes = express.Router();
 
@@ -12,7 +10,10 @@ const {
     moviesPatchController,
     moviesRatedController,
     moviesByIdController,
-    moviesByTitleController
+    moviesByTitleController,
+    moviesReleaseIn7Controller,
+    moviesReleaseInCinemasController,
+    moviesByGenreController
 } = require("../controllers/MoviesControllers.js");
 
 moviesRoutes.get("/", moviesGetAllController);
@@ -24,6 +25,8 @@ moviesRoutes.patch("/:id", moviesPatchController);
 moviesRoutes.get("/rated", moviesRatedController);
 moviesRoutes.get("/id/:id", moviesByIdController);
 moviesRoutes.get("/title/:title", moviesByTitleController);
-
+moviesRoutes.get("/release/7", moviesReleaseIn7Controller);
+moviesRoutes.get("/release/cinemas", moviesReleaseInCinemasController);
+moviesRoutes.get("/genre/:genre", moviesByGenreController);
 
 module.exports = moviesRoutes;

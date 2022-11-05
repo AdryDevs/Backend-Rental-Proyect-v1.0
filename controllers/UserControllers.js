@@ -1,6 +1,6 @@
 const User = require('../models/user');
 
-const userControllers = {   }
+const userControllers = { postUser, getUser, deleteUser, updateUser };
 
 userControllers.postUser = async (req, res) => {
     const { email, password } = req.body;

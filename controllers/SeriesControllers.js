@@ -1,7 +1,4 @@
-// Controller for the series
-
 const SeriesModel = require("../models/series.js");
-// const { seriesFindOne } = require("../services/series.services.js");
 
 const seriesGetAllController = async (req, res) => {
     const queryParameters = req.query || {};
@@ -71,8 +68,6 @@ const seriesPatchController = async (req, res) => {
     }
 };
 
-//find all series rated more than 8
-
 const seriesRatedController = async (req, res) => {
     const series = await SeriesModel.findAll({ 
         where: {
@@ -84,8 +79,6 @@ const seriesRatedController = async (req, res) => {
     res.json(series);
 };
 
-// Find series by Id
-
 const seriesFindOneController = async (id) => {
     id = req.params.id;
     const series = await SeriesModel.findOne({
@@ -95,8 +88,6 @@ const seriesFindOneController = async (id) => {
     });
     res.json(series);
 };
-
-// Find series by title
 
 const seriesFindByTitleController = async (req, res) => {
     const title = req.params.title;
@@ -108,8 +99,6 @@ const seriesFindByTitleController = async (req, res) => {
     res.json(series);
 };
 
-// find series by id
-
 const seriesFindByIdController = async (req, res) => {
     const id = req.params.id;
     const series = await SeriesModel.findOne({
@@ -119,8 +108,6 @@ const seriesFindByIdController = async (req, res) => {
     });
     res.json(series);
     };
-
-//find series that will be released in the next 7 days
 
 const seriesReleaseIn7Controller = async (req, res) => {
     const series = await SeriesModel.findAll({
@@ -133,7 +120,15 @@ const seriesReleaseIn7Controller = async (req, res) => {
     res.json(series);
 };
 
-//TODO find series that will be released on cinemas in the future
+const seriesReleaseInCinemasController = async (req, res) => {
+    const series = await SeriesModel.findAll({
+        where: {
+            future_cinemas: true
+        }
+    });
+    res.json(series);
+};
+
 
 module.exports = {
     seriesGetAllController,
@@ -144,5 +139,8 @@ module.exports = {
     seriesPatchController,
     seriesRatedController,
     seriesFindOneController,
-    seriesFindByTitleController
+    seriesFindByTitleController,
+    seriesFindByIdController,
+    seriesReleaseIn7Controller,
+    seriesReleaseInCinemasController
 };

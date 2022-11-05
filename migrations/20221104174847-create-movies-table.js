@@ -18,6 +18,11 @@ module.exports = {
           type: Sequelize.INTEGER,
           allowNull: false
       },
+        future_cinemas:
+      {
+         type: DataTypes.BOOLEAN,
+          allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

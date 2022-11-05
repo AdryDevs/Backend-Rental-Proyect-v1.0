@@ -12,7 +12,10 @@ const {
     seriesPatchController,
     seriesRatedController,
     seriesFindOneController,
-    seriesFindByTitleController
+    seriesFindByTitleController,
+    seriesFindByIdController,
+    seriesReleaseIn7Controller,
+    seriesReleaseInCinemasController
 } = require("../controllers/Seriescontrollers.js");
 
 seriesRouter.get("/", seriesGetAllController);
@@ -24,5 +27,8 @@ seriesRouter.patch("/:id", seriesPatchController);
 seriesRouter.get("/rated", seriesRatedController);
 seriesRouter.get("/id/:id", seriesFindOneController);
 seriesRouter.get("/title/:title", seriesFindByTitleController);
+seriesRouter.get("/id/:id", seriesFindByIdController);
+seriesRouter.get("/release/7", seriesReleaseIn7Controller);
+seriesRouter.get("/release/cinemas", seriesReleaseInCinemasController);
 
 module.exports = seriesRouter;

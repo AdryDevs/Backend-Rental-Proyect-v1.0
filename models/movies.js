@@ -17,6 +17,9 @@ Movie.init({
 {
     release_date: DataTypes.DATE,
 },
+{
+    future_cinemas: DataTypes.BOOLEAN
+},
     {
     sequelize,
     modelName: 'movies',
@@ -26,4 +29,3 @@ Movie.init({
 
 
 module.exports = Movie
-

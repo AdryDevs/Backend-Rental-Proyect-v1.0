@@ -1,14 +1,10 @@
-// Controller for the movies
-
-const MovieModel = require("../models/movies.js");
-// const { movieFindOne } = require("../services/movies.services.js") TODO
+const MovieModel = require("../models/movies.js"); 
 
 const moviesGetAllController = async (req, res) => {
   const queryParameters = req.query || {};
   const movies = await MovieModel.findAll(queryParameters);
   res.json(movies);
 };
-
 
 const moviesGetOneController = async (req, res) => {
   const { id } = req.params;
@@ -67,32 +63,24 @@ const moviesPatchController = async (req, res) => {
   }
 };
 
-//find all movies rated more than 8
-
 const moviesRatedController = async (req, res) => {
-    const movies = await Movies.findAll({
-        where: {
-            rating: {
-                [Op.gt]: 8
-            }
-        }
-    });
-    res.json(movies);
-}
-
-//find a movie by id
-
-const moviesByIdController = async (req, res) => {
-    const id = req.params.id;
-    const movie = await Movies.findOne({
-        where: {
-            id: id
-        }
+    const movie = await Movies.findAll({
+        limit: 3,
+        order: [
+            ['rating', 'DESC']
+        ]
     });
     res.json(movie);
 }
 
-//find a movie by title
+const moviesByIdController = async (req, res) => {
+    const movie = await Movies.findAll({
+        order: [
+            ['rating', 'DESC']
+        ]
+    });
+    res.json(movie);
+}
 
 const moviesByTitleController = async (req, res) => {
     const title = req.params.title;
@@ -104,7 +92,17 @@ const moviesByTitleController = async (req, res) => {
     res.json(movie);
 }
 
-//TODO find a movie by genre
+//find a movie by genre
+
+const moviesByGenreController = async (req, res) => {
+    const genre = req.params.genre;
+    const movie = await Movies.findAll({
+        where: {
+            genre: genre
+        }
+    });
+    res.json(movie);
+}
 
 module.exports = {
     moviesGetAllController,
@@ -115,7 +113,8 @@ module.exports = {
     moviesPatchController,
     moviesRatedController,
     moviesByIdController,
-    moviesByTitleController
+    moviesByTitleController,
+    moviesByGenreController
 };
 
 

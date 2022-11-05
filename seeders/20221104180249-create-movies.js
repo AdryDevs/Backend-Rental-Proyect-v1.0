@@ -10,6 +10,7 @@ module.exports = {
         title: 'The Shawshank Redemption',
         year: '1994-10-14',
         rating: 9.3,
+        future_cinemas: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -17,6 +18,7 @@ module.exports = {
         title: 'The Godfather',
         year: '1972-03-24',
         rating: 7,
+        future_cinemas: true,
         createdAt: new Date(),
         updatedAt: new Date()
       }
