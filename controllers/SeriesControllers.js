@@ -1,7 +1,7 @@
 // Controller for the series
 
-const SeriesModel = require("../models/series.model.js");
-const { seriesFindOne } = require("../services/series.services.js");
+const SeriesModel = require("../models/series.js");
+// const { seriesFindOne } = require("../services/series.services.js");
 
 const seriesGetAllController = async (req, res) => {
     const queryParameters = req.query || {};
@@ -87,7 +87,7 @@ const seriesRatedController = async (req, res) => {
 // Find series by Id
 
 const seriesFindOneController = async (id) => {
-    const id = req.params.id;
+    id = req.params.id;
     const series = await SeriesModel.findOne({
         where: {
             id: id

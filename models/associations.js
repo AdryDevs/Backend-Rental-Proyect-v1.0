@@ -4,12 +4,13 @@ const Rol = require('./rol');
 const User = require('./user');
 const Movies = require('./movies');
 const Series = require('./series'); 
+const Articles = require('./articles');
 
 
 // Creating a many-to-many relationship between the User and Rol models
 
-User.belongsToMany(Rol, { through: "user-rol" });
-Rol.belongsToMany(User, { through: "user-rol" });
+User.belongsTo(Rol, {foreignKey: 'id_rol'});
+Rol.belongsTo(User, {foreignKey: 'id_user'});
 
 // Creating a one-to-many relationship between the User and Movies models
 

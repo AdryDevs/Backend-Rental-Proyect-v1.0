@@ -5,7 +5,7 @@ const MovieModel = require("../models/movies.js");
 
 const moviesGetAllController = async (req, res) => {
   const queryParameters = req.query || {};
-  const movies = await MovieModel.find(queryParameters);
+  const movies = await MovieModel.findAll(queryParameters);
   res.json(movies);
 };
 

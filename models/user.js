@@ -4,7 +4,7 @@ const sequelize = require('../db/db')
 class User extends Model {}
 
 User.init({
-    mail: {
+    email: {
         type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,

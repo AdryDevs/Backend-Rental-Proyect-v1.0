@@ -11,8 +11,8 @@ const {
     moviesPutController,
     moviesPatchController,
     moviesRatedController,
-    movieByIdController,
-    movieByTitleController
+    moviesByIdController,
+    moviesByTitleController
 } = require("../controllers/MoviesControllers.js");
 
 moviesRoutes.get("/", moviesGetAllController);
@@ -22,8 +22,8 @@ moviesRoutes.delete("/:id", moviesDeleteController);
 moviesRoutes.put("/:id", moviesPutController);
 moviesRoutes.patch("/:id", moviesPatchController);
 moviesRoutes.get("/rated", moviesRatedController);
-moviesRoutes.get("/id/:id", movieByIdController);
-moviesRoutes.get("/title/:title", movieByTitleController);
+moviesRoutes.get("/id/:id", moviesByIdController);
+moviesRoutes.get("/title/:title", moviesByTitleController);
 
 
 module.exports = moviesRoutes;

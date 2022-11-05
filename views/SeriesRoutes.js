@@ -13,7 +13,7 @@ const {
     seriesRatedController,
     seriesFindOneController,
     seriesFindByTitleController
-} = require("../controllers/series.controllers.js");
+} = require("../controllers/Seriescontrollers.js");
 
 seriesRouter.get("/", seriesGetAllController);
 seriesRouter.get("/:id", seriesGetOneController);
