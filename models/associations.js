@@ -4,28 +4,33 @@ const Rol = require('./rol');
 const User = require('./user');
 const Movies = require('./movies');
 const Series = require('./series'); 
-const Articles = require('./articles');
+const Loaned = require('./loaned');
 
 
-// Creating a many-to-many relationship between the User and Rol models
+// Defining the associations
 
-User.belongsTo(Rol, {foreignKey: 'id_rol'});
-Rol.belongsTo(User, {foreignKey: 'id_user'});
+Series.hasMany(Movies, {throught: 'articles'});
+Movies.belongsTo(Series, {throught: 'articles'});
 
-// Creating a one-to-many relationship between the User and Movies models
+Articles.hasOne(Loaned);
+Loaned.belongsTo(Articles);
 
-User.hasMany(Movies, { foreignKey: 'id_user' });
-Movies.belongsTo(User, { foreignKey: 'id_user' });
+Loans.hasMany(Loaned);
+Loaned.belongsTo(Loans);
 
-// Creating a one-to-many relationship between the User and Serie models
+User.hasMany(Loans);
+Loans.belongsTo(User);
 
-User.hasMany(Series, { foreignKey: 'id_user' });
-Series.belongsTo(User, { foreignKey: 'id_user' });
+Rol.hasMany(User);
+User.belongsTo(Rol);
 
 module.exports = { 
     User,
     Rol,
     Movies,
-    Series };
+    Series,
+    Loaned,
+    Loans
+ };
 
 

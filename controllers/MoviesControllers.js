@@ -104,6 +104,8 @@ const moviesByTitleController = async (req, res) => {
     res.json(movie);
 }
 
+//TODO find a movie by genre
+
 module.exports = {
     moviesGetAllController,
     moviesGetOneController,

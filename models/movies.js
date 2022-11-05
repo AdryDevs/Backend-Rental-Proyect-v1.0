@@ -13,7 +13,11 @@ Movie.init({
     title: DataTypes.STRING,
     year: DataTypes.INTEGER,
     rating: DataTypes.INTEGER,
-}, {
+},
+{
+    release_date: DataTypes.DATE,
+},
+    {
     sequelize,
     modelName: 'movies',
     freezeTableName: true,

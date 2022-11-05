@@ -1,23 +1,23 @@
-const { DataTypes, Model } = require('sequelize')
+const { DataTypes, Model, DATE } = require('sequelize')
 const sequelize = require('../db/db')
 
-class Article extends Model {}
+class Loaned extends Model {}
 
-Article.init({
-    id_article: {
+Loaned.init({
+    id_loaned: {
         type: STRING,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true
     },
-    date: DataTypes.DATE,
-    type: DataTypes.INTEGER,
+    createdAt: DATE,
+    updatedAt: DATE
 }, {
     sequelize,
-    modelName: 'article',
+    modelName: 'loaned',
     freezeTableName: true,
     timestamps: false
 })
 
-module.exports = Article
+module.exports = Loaned
 

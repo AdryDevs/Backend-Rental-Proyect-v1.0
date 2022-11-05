@@ -9,12 +9,14 @@ module.exports = {
       {
         title: 'The Shawshank Redemption',
         year: '1994-10-14',
+        rating: 9.3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         title: 'The Godfather',
         year: '1972-03-24',
+        rating: 7,
         createdAt: new Date(),
         updatedAt: new Date()
       }

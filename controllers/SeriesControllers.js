@@ -108,6 +108,33 @@ const seriesFindByTitleController = async (req, res) => {
     res.json(series);
 };
 
+// find series by id
+
+const seriesFindByIdController = async (req, res) => {
+    const id = req.params.id;
+    const series = await SeriesModel.findOne({
+        where: {
+            id: id
+        }
+    });
+    res.json(series);
+    };
+
+//find series that will be released in the next 7 days
+
+const seriesReleaseIn7Controller = async (req, res) => {
+    const series = await SeriesModel.findAll({
+        where: {
+            release_date: {
+                [Op.between]: [new Date(), new Date().setDate(new Date().getDate() + 7)]
+            }
+        }
+    });
+    res.json(series);
+};
+
+//TODO find series that will be released on cinemas in the future
+
 module.exports = {
     seriesGetAllController,
     seriesGetOneController,
