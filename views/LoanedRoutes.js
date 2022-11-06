@@ -18,8 +18,6 @@ loanedRoutes.post("/", loanedCreateController);
 loanedRoutes.delete("/:id", loanedDeleteController);
 loanedRoutes.put("/:id", loanedPutController);
 loanedRoutes.patch("/:id", loanedPatchController);
-loanedRoutes.get("/user/:id", loanedByUserIdController);
-loanedRoutes.get("/loan/:id", loanedByLoanIdController);
 
 module.exports = loanedRoutes;
     

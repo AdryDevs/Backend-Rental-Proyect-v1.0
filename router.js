@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const UserRoutes = require('./views/UserRoutes');
-// const MoviesRoutes = require('./views/MoviesRoutes');
+const MoviesRoutes = require('./views/MoviesRoutes');
 const SeriesRoutes = require('./views/SeriesRoutes');
 const LoanedRoutes = require('./views/LoanedRoutes');
 
