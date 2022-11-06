@@ -5,7 +5,7 @@ class Loaned extends Model {}
 
 Loaned.init({
     id_loaned: {
-        type: STRING,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true
