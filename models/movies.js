@@ -1,7 +1,7 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../db/db');
 
-class Movie extends Model {}
+class Movie extends Model { }
 
 Movie.init({
     id_movie: {

@@ -1,8 +1,8 @@
-const SeriesModel = require("../models/series.js");
+const Series = require("../models/series.js");
 
 const seriesGetAllController = async (req, res) => {
     const queryParameters = req.query || {};
-    const series = await SeriesModel.find(queryParameters);
+    const series = await Series.find(queryParameters);
     res.json(series);
     };
 
@@ -19,7 +19,7 @@ const seriesGetOneController = async (req, res) => {
 const seriesCreateController = async (req, res) => {
     try {
         const series = req.body;
-        const seriesCreated = new SeriesModel(series);
+        const seriesCreated = new Series(series);
         await seriesCreated.save();
         res.status(201).json(seriesCreated);
     } catch (error) {
@@ -69,7 +69,7 @@ const seriesPatchController = async (req, res) => {
 };
 
 const seriesRatedController = async (req, res) => {
-    const series = await SeriesModel.findAll({ 
+    const series = await Series.findAll({ 
         where: {
              rating: {
                  [Op.gt]: 8 
@@ -81,7 +81,7 @@ const seriesRatedController = async (req, res) => {
 
 const seriesFindOneController = async (id) => {
     id = req.params.id;
-    const series = await SeriesModel.findOne({
+    const series = await Series.findOne({
         where: {
             id: id
         }
@@ -91,7 +91,7 @@ const seriesFindOneController = async (id) => {
 
 const seriesFindByTitleController = async (req, res) => {
     const title = req.params.title;
-    const series = await SeriesModel.findAll({
+    const series = await Series.findAll({
         where: {
             title: title
         }
@@ -101,7 +101,7 @@ const seriesFindByTitleController = async (req, res) => {
 
 const seriesFindByIdController = async (req, res) => {
     const id = req.params.id;
-    const series = await SeriesModel.findOne({
+    const series = await Series.findOne({
         where: {
             id: id
         }
@@ -110,7 +110,7 @@ const seriesFindByIdController = async (req, res) => {
     };
 
 const seriesReleaseIn7Controller = async (req, res) => {
-    const series = await SeriesModel.findAll({
+    const series = await Series.findAll({
         where: {
             release_date: {
                 [Op.between]: [new Date(), new Date().setDate(new Date().getDate() + 7)]
@@ -121,7 +121,7 @@ const seriesReleaseIn7Controller = async (req, res) => {
 };
 
 const seriesReleaseInCinemasController = async (req, res) => {
-    const series = await SeriesModel.findAll({
+    const series = await Series.findAll({
         where: {
             future_cinemas: true
         }

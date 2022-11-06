@@ -1,8 +1,8 @@
-const MovieModel = require("../models/movies.js"); 
+const Movie = require("../models/movies");
 
 const moviesGetAllController = async (req, res) => {
   const queryParameters = req.query || {};
-  const movies = await MovieModel.findAll(queryParameters);
+  const movies = await Movie.findAll(queryParameters);
   res.json(movies);
 };
 
@@ -19,7 +19,7 @@ const moviesGetOneController = async (req, res) => {
 const moviesCreateController = async (req, res) => {
   try {
     const movie = req.body;
-    const movieCreated = new MovieModel(movie);
+    const movieCreated = new Movie(movie);
     await movieCreated.save();
     res.status(201).json(movieCreated);
   } catch (error) {

@@ -27,13 +27,16 @@ User.init({
         validate: {
             len: [1,45]
         }
-    }
+    },
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
 },
+
 {
     sequelize,
     modelName: "user",
     freezeTableName: true,
     timestamps: false
-})
+});
 
 module.exports = User
