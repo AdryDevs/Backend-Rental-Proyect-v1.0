@@ -16,9 +16,9 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     title: DataTypes.STRING,
-    year: DataTypes.INTEGER,
     rating: DataTypes.INTEGER,
     release_date: DataTypes.DATE,
+    genre: DataTypes.STRING,
     id_article: DataTypes.INTEGER
 
   }, {

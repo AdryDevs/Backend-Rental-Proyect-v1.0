@@ -12,9 +12,6 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      year: {
-        type: Sequelize.INTEGER
-      },
       rating: {
         type: Sequelize.INTEGER
       },
@@ -24,15 +21,16 @@ module.exports = {
       onCinemas: {
         type: Sequelize.BOOLEAN
       },
+      genre: {
+        type: Sequelize.STRING
+      },
       id_article: {
         type: Sequelize.INTEGER
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE
       }
     });

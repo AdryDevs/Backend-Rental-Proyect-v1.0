@@ -1,17 +1,11 @@
-//Importo modelo de datos
-const db = require("../models");
-const movies = db.movie;
-const Op = db.Sequelize.Op; //Import all ORM sequelize functions 
+const Models = require("../models/index");
+const {Op} = require("sequelize");
 
-var categoryModel  = require('../models').category;  //Add for dependency response
+const MovieController = {};
 
-const MovieController = {}; //Create the object controller
+//CRUD
 
-
-
-//CRUD end-points Functions
-//-------------------------------------------------------------------------------------
-//GET all movies from database
+    //get all movies from database
 MovieController.getAll = (req, res) => {
     
     movies.findAll({include: [{ model:categoryModel}]})
@@ -27,8 +21,8 @@ MovieController.getAll = (req, res) => {
   };
 
 
-//-------------------------------------------------------------------------------------
-//GET movies by Id from database
+
+    //get movies by Id
 MovieController.getById = (req, res) => {
     const id = req.params.id;
 
@@ -51,8 +45,8 @@ MovieController.getById = (req, res) => {
 
 
 
-//-------------------------------------------------------------------------------------
-//CREATE a new movie in database
+
+    //create a new movie in database
 MovieController.create = (req, res) => {
     // Validate request
     if (!req.body.title) {
@@ -62,7 +56,7 @@ MovieController.create = (req, res) => {
       return;
     }
   
-    // Create a Movies
+    // Create a Movie
     const newMovie = {
       title: req.body.title,
       categoryId: req.body.categoryId
@@ -82,8 +76,8 @@ MovieController.create = (req, res) => {
   };
 
 
-//-------------------------------------------------------------------------------------
-//UPDATE a movie from database
+
+    //update a movie from database
 MovieController.update = (req, res) => {
     const id = req.params.id;
   
@@ -109,9 +103,9 @@ MovieController.update = (req, res) => {
   };
 
 
-//-------------------------------------------------------------------------------------
-//GET movie by Title from database 
-//FindByTitle
+
+    //get movie by Title
+        
   MovieController.getByTitle = (req, res) => {
     movies.findAll({ where: { title: req.params.title } })
       .then(data => {
@@ -126,8 +120,7 @@ MovieController.update = (req, res) => {
   };
 
 
-//-------------------------------------------------------------------------------------
-//DELETE a movie by Id from database
+    //delete a movie by Id from database
 MovieController.delete = (req, res) => {
     const id = req.params.id;
   
@@ -153,9 +146,7 @@ MovieController.delete = (req, res) => {
   };
 
 
-//-------------------------------------------------------------------------------------
-//DELETE all movies from database
-//delete all movies 
+    //delete all movies 
   MovieController.deleteAll = (req, res) => {
     movies.destroy({
       where: {},
@@ -171,5 +162,22 @@ MovieController.delete = (req, res) => {
         });
       });
   };
+
+
+    //find top rated movies
+
+    MovieController.getTopRated = (req, res) => {
+        movies.findAll({ where: { rating: { [Op.gt]: 4 } } })
+            .then(data => {
+                res.send(data);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message:
+                        err.message || "Some error occurred while retrieving tutorials."
+                });
+            });
+    };
+
 
 module.exports = MovieController;

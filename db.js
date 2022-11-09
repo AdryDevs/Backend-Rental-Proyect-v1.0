@@ -21,6 +21,6 @@ const sequelize = new Sequelize(
 
 module.exports = sequelize.authenticate()
 .then((db)=>{
-    console.log('You are connected to the Railway database'.green); 
+    console.log('You are connected to the database'.green); 
     return db;
 });
