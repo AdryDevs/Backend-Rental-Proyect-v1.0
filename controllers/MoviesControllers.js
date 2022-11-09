@@ -1,5 +1,5 @@
 const Models = require("../models/index");
-const {Op} = require("sequelize");
+const {Op, Model} = require("sequelize");
 
 const MovieController = {};
 
@@ -8,7 +8,7 @@ const MovieController = {};
     //get all movies from database
 MovieController.getAll = (req, res) => {
     
-    movies.findAll({include: [{ model:categoryModel}]})
+    Models.movie.findAll()
       .then(data => {
         res.send(data);
       })
@@ -26,7 +26,7 @@ MovieController.getAll = (req, res) => {
 MovieController.getById = (req, res) => {
     const id = req.params.id;
 
-    movies.findByPk(id, {include: [{ model:categoryModel}]})
+    Models.movie.findByPk(id)
       .then(data => {
         if (data) {
           res.send(data);
@@ -119,55 +119,10 @@ MovieController.update = (req, res) => {
       });
   };
 
-
-    //delete a movie by Id from database
-MovieController.delete = (req, res) => {
-    const id = req.params.id;
-  
-    movies.destroy({
-      where: { id: id }
-    })
-      .then(num => {
-        if (num == 1) {
-          res.send({
-            message: "Movie was deleted successfully!"
-          });
-        } else {
-          res.send({
-            message: `Cannot delete Movie with id=${id}. Maybe Movie was not found!`
-          });
-        }
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Could not delete Movie with id=" + id
-        });
-      });
-  };
-
-
-    //delete all movies 
-  MovieController.deleteAll = (req, res) => {
-    movies.destroy({
-      where: {},
-      truncate: false
-    })
-      .then(nums => {
-        res.send({ message: `${nums} Movies were deleted successfully!` });
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while removing all movies."
-        });
-      });
-  };
-
-
     //find top rated movies
 
     MovieController.getTopRated = (req, res) => {
-        movies.findAll({ where: { rating: { [Op.gt]: 4 } } })
+        Models.movie.findAll({ where: { rating: { [Op.gt]: 4 } } })
             .then(data => {
                 res.send(data);
             })

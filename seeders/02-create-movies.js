@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('movies', 
+    await queryInterface.bulkInsert('movie', 
     [{
       "title": "The Tree, the Mayor and the Mediatheque",
       "release_date": "2022-11-28 16:18:21",
