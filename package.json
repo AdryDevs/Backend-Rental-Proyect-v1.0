@@ -1,0 +1,28 @@
+{
+  "name": "Rental Proyect",
+  "version": "0.0.1",
+  "description": "API REST pryect backend only",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "node",
+    "API",
+    "backend"
+  ],
+  "author": "Adrian Alonso",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.2",
+    "nodemon": "^2.0.14",
+    "sequelize": "^6.8.0",
+    "sequelize-cli": "^6.2.0",
+    "winston": "^3.3.3"
+  }
+}
