@@ -24,14 +24,13 @@ MovieController.getAll = (req, res) => {
     //get movies by Id
 MovieController.getById = (req, res) => {
     const id = req.params.id;
-
     Models.movie.findByPk(id)
       .then(data => {
         if (data) {
           res.send(data);
         } else {
           res.status(404).send({
-            message: `Cannot find Tutorial with id=${id}.`
+            message: `Cannot find id=${id}.`
           });
         }
       })
@@ -41,67 +40,6 @@ MovieController.getById = (req, res) => {
         });
       });
   };
-
-
-
-
-    //create a new movie in database
-MovieController.create = (req, res) => {
-    // Validate request
-    if (!req.body.title) {
-      res.status(400).send({
-        message: "Content can not be empty!"
-      });
-      return;
-    }
-  
-    // Create a Movie
-    const newMovie = {
-      title: req.body.title,
-      categoryId: req.body.categoryId
-    };
-  
-    // Save Movies in the database
-    movies.create(newMovie)
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the Movie."
-        });
-      });
-  };
-
-
-
-    //update a movie from database
-MovieController.update = (req, res) => {
-    const id = req.params.id;
-  
-    movies.update(req.body, {
-      where: { id: id }
-    })
-      .then(num => {
-        if (num == 1) {
-          res.send({
-            message: "Movie was updated successfully."
-          });
-        } else {
-          res.send({
-            message: `Cannot update Movie with id=${id}. Maybe Movie was not found or req.body is empty!`
-          });
-        }
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Error updating Movie with id=" + id
-        });
-      });
-  };
-
-
 
     //get movie by Title
         
@@ -113,7 +51,7 @@ MovieController.update = (req, res) => {
       .catch(err => {
         res.status(500).send({
           message:
-            err.message || "Some error occurred while retrieving tutorials."
+            err.message || "Some error occurred while retrieving the data."
         });
       });
   };
@@ -128,7 +66,22 @@ MovieController.update = (req, res) => {
             .catch(err => {
                 res.status(500).send({
                     message:
-                        err.message || "Some error occurred while retrieving tutorials."
+                        err.message || "Some error occurred while retrieving the data."
+                });
+            });
+    };
+
+    //find movies by genre
+
+    MovieController.getByGenre = (req, res) => {
+        Models.movie.findAll({ where: { genre: req.params.genre } })
+            .then(data => {
+                res.send(data);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message:
+                        err.message || "Some error occurred while retrieving the data."
                 });
             });
     };

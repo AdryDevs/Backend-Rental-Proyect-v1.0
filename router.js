@@ -1,10 +1,19 @@
 const router = require('express').Router();
 
-//Importing controllers
-const MovieRouter = require('./views/MovieRouter');
 const { application } = require('express');
 
+//Importing routers
+const MovieRouter = require('./views/MovieRouter');
+const TvShowRouter = require('./views/TvShowRouter');
+const UserRouter = require('./views/UserRouter');
+
+//Middlewares
+const auth = require('./middlewares/auth');
+
+
 //Routes
-router.use('/movies', MovieRouter); 
+router.use('/movies', auth, MovieRouter);
+router.use('/tvshows', auth, TvShowRouter);
+router.use('/users', UserRouter);
 
 module.exports = router;
