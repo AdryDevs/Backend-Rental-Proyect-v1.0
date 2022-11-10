@@ -7,27 +7,41 @@ const AuthController = {};
 
 //Login and create token
 
-AuthController.signIn = async (req, res) => {
-    const { email, password } = req.body;
-
-    const user = await user.findOne({ where: { email } });
-
-    if (!user) {
-        return res.status(400).send({ error: 'User not found' });
-    }
-
-    if (!await bcrypt.compare(password, user.password)) {
-        return res.status(400).send({ error: 'Incorrect password' });
-    }
-
-    user.password = undefined;
-
-    const token = jwt.sign({ id: user.id }, authConfig.secret, {
-        expiresIn: authConfig.expires
-    });
-
-    res.send({ user, token });
-}
+    AuthController.signIn = async (req, res) => {
+        const { email, password } = req.body;
+        const userFound = await models.user.findOne({
+          where:{ email: email }});
+        if (!userFound) {
+          res.status(401).json({ message: "Password or email not valid" });
+          return;
+        }
+        const hashedPassword = encryptPassword(password);
+        if (hashedPassword !== userFound.password) {
+          console.log(email,password);
+          res.status(401).json({ message: "Password or email not valid" });
+          return;
+        }
+      
+        const secret = process.env.JWT_SECRET || '';
+      
+        if (secret.length < 10) {
+          throw new Error("JWT_SECRET is not set");
+        }
+      
+      /* Creating a JWT token. */
+        const jwt = jsonwebtoken.sign({
+          id: userFound.id,
+          email: userFound.email,
+          created: Date.now(),
+          role: userFound.id_rol
+        }, secret);
+      
+        res.status(200).json({
+          message: "You are logged in",
+          jwt: jwt,
+        });
+      
+      }
 
 //Register new user and create token
 
