@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     rating: DataTypes.INTEGER,
     release_date: DataTypes.DATE,
     genre: DataTypes.STRING,
-    id_article: DataTypes.INTEGER
+    articleId: DataTypes.INTEGER
 
   }, {
     sequelize,

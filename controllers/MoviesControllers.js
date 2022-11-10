@@ -7,7 +7,6 @@ const MovieController = {};
 
     //get all movies from database
 MovieController.getAll = (req, res) => {
-    
     Models.movie.findAll()
       .then(data => {
         res.send(data);
@@ -18,7 +17,7 @@ MovieController.getAll = (req, res) => {
             err.message || "Some error occurred while retrieving movies."
         });
       });
-  };
+    };
 
 
 

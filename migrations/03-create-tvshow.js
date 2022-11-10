@@ -18,7 +18,7 @@ module.exports = {
       release_date: {
         type: Sequelize.DATE
       },
-      id_article: {
+      articleId: {
         type: Sequelize.INTEGER
       },
       genre: {
@@ -32,7 +32,7 @@ module.exports = {
       }
     });
     await queryInterface.addConstraint('tvshows', {
-      fields: ['id_article'],
+      fields: ['articleId'],
       type: 'foreign key',
       name: 'fk_id_article2',
       references: {

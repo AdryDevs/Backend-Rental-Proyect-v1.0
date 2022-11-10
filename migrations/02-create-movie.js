@@ -24,7 +24,7 @@ module.exports = {
       genre: {
         type: Sequelize.STRING
       },
-      id_article: {
+      articleId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -35,7 +35,7 @@ module.exports = {
       }
     });
     await queryInterface.addConstraint('movie', {
-      fields: ['id_article'],
+      fields: ['articleId'],
       type: 'foreign key',
       name: 'fk_id_article',
       references: {

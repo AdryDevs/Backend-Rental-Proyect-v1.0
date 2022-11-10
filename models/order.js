@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     date: DataTypes.DATEONLY,
-    id_article: DataTypes.INTEGER,
+    articleId: DataTypes.INTEGER,
     id_user: DataTypes.INTEGER
   }, {
     sequelize,
