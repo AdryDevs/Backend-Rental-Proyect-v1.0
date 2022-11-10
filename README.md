@@ -31,3 +31,6 @@ sequelize db:seed:all
 sequelize db:seed:undo
 sequelize db:seed:undo:all
 ```
+
+
+registro, login y middleware de autenticación con JWT
