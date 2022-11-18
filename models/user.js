@@ -26,5 +26,18 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'user',
   });
-  return user;
+  
+
+// Check if user is Admin
+
+user.isAdmin = function(roles) {
+  let tmpArray = [];
+  roles.forEach(role => {
+    tmpArray.push(role.role);
+  });
+  return tmpArray.includes("admin");
+}
+return user;
 };
+
+

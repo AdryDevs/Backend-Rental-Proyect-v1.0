@@ -1,32 +1,31 @@
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth');
+const { user } = require('../models');
 
 module.exports = (req, res, next) => {
-    const authHeader = req.headers.authorization;
-    // Check if token exists
-    if (!authHeader) {
-        return res.status(401).send({ error: 'No token provided' });
+
+    // Look for the token in the request header
+    if(!req.headers.authorization) {
+        res.status(401).json({ msg: "No token found" });
+    } else {
+
+        // Check if the token is valid
+        let token = req.headers.authorization.split(" ")[1];
+
+        jwt.verify(token, authConfig.secret, (err, decoded) => {
+
+            if(err) {
+                res.status(500).json({ msg: "Not a valid token", err });
+            } else {
+                
+                user.findByPk(decoded.user.id, { include: "roles" }).then(user => {
+                    //console.log(user.roles);
+                    req.user = user;
+                    next();
+                });
+            }
+
+        })
     }
-    // Check if token is valid
-    const parts = authHeader.split(' ');
 
-    if (!parts.length === 2) {
-        return res.status(401).send({ error: 'Token error' });
-    }   
-    // Check if token is Bearer
-    const [scheme, token] = parts;
-
-    if (!/^Bearer$/i.test(scheme)) {
-        return res.status(401).send({ error: 'Token malformatted' });
-    }
-    // Check if token is valid
-    jwt.verify(token, authConfig.secret, (err, decoded) => {
-        if (err) {
-            return res.status(401).send({ error: 'Token invalid' });
-        }
-
-        req.userId = decoded.id;
-
-        return next();
-    });
-}
+};

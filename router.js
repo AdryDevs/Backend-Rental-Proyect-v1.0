@@ -7,6 +7,7 @@ const MovieRouter = require('./views/MovieRouter');
 const TvShowRouter = require('./views/TvShowRouter');
 const UserRouter = require('./views/UserRouter');
 
+
 //Middlewares
 const auth = require('./middlewares/auth');
 

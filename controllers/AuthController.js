@@ -12,7 +12,7 @@ const AuthController = {};
         const userFound = await models.user.findOne({
           where:{ email: email }});
         if (!userFound) {
-          res.status(401).json({ message: "Password or email not valid" });
+          res.status(404).json({ message: "Password or email not valid" });
           return;
         }
         const hashedPassword = encryptPassword(password);
