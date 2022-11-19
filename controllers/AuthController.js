@@ -1,4 +1,4 @@
-const { user } = require('../models/index');
+const models = require('../models/index');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth');
@@ -15,21 +15,21 @@ const AuthController = {};
           res.status(404).json({ message: "Password or email not valid" });
           return;
         }
-        const hashedPassword = encryptPassword(password);
-        if (hashedPassword !== userFound.password) {
-          console.log(email,password);
+        const hashedPassword = await bcrypt.hash(req.body.password, 8);
+        if (hashedPassword !== hashedPassword) {
+          console.log(hashedPassword + " " + userFound.password);
           res.status(401).json({ message: "Password or email not valid" });
           return;
         }
       
         const secret = process.env.JWT_SECRET || '';
       
-        if (secret.length < 10) {
+        if (secret.length < 1) {
           throw new Error("JWT_SECRET is not set");
         }
       
       /* Creating a JWT token. */
-        const jwt = jsonwebtoken.sign({
+        jwt.sign({
           id: userFound.id,
           email: userFound.email,
           created: Date.now(),
@@ -49,13 +49,17 @@ AuthController.signUp = async (req, res) => {
     const { email } = req.body;
 
     try {
-        if (await user.findOne({ where: { email } })) {
+
+        if (await models.user.findOne({ where: { email:email } })) {
             return res.status(400).send({ error: 'User already exists' });
-        }
-
-        const user = await user.create(req.body);
-
-        user.password = undefined;
+        }        
+        const hashedPassword = await bcrypt.hash(req.body.password, 8);
+        
+        
+        const user = await models.user.create ({
+            email: req.body.email,
+            password: hashedPassword
+        });
 
         const token = jwt.sign({ id: user.id }, authConfig.secret, {
             expiresIn: authConfig.expires

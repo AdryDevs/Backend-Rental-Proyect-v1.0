@@ -15,15 +15,15 @@ module.exports = (req, res, next) => {
         jwt.verify(token, authConfig.secret, (err, decoded) => {
 
             if(err) {
-                res.status(500).json({ msg: "Not a valid token", err });
-            } else {
+                res.status(500).json({ msg: "Not a valid token", err });}
+            //  else {
                 
-                user.findByPk(decoded.user.id, { include: "roles" }).then(user => {
-                    //console.log(user.roles);
-                    req.user = user;
-                    next();
-                });
-            }
+            //     user.findByPk(decoded.user.id, { include: "roles" }).then(user => {
+            //         //console.log(user.roles);
+            //         req.user = user;
+            //         next();
+            //     });
+            // }
 
         })
     }

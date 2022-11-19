@@ -8,6 +8,7 @@ const TvShowRouter = require('./views/TvShowRouter');
 const UserRouter = require('./views/UserRouter');
 
 
+
 //Middlewares
 const auth = require('./middlewares/auth');
 
@@ -16,5 +17,6 @@ const auth = require('./middlewares/auth');
 router.use('/movies', auth, MovieRouter);
 router.use('/tvshows', auth, TvShowRouter);
 router.use('/users', UserRouter);
+
 
 module.exports = router;
