@@ -3,10 +3,10 @@ Rental project (only backend)
 Used technologies:
 
     - Express
-    -MySQL
-    -JavaScript
-    -Node
-    -Sequelize
+    - MySQL
+    - JavaScript
+    - Node
+    - Sequelize
 
 How to run the project:
 
@@ -33,4 +33,14 @@ Once logged in, you can use the token in the Authorization header in order to ac
 
 The .env file is not included in the project, it will be sent to you separately.
 
+Endpoints:
 
+	- Register
+POST - localhost:3000/auth/signup - { "name": "root", "email": "root@email.com",  "password": "password" }
+
+	- Login
+POST - localhost:3000/auth/signin - { "email": "root@email.com",  "password": "password"}
+
+	- Home
+GET - localhost:3000
+	

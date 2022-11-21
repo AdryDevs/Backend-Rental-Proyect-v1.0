@@ -8,7 +8,7 @@ const MovieController = require('../controllers/MoviesControllers');
 router.get('/', MovieController.getAll);
 router.get('/byId/:id', MovieController.getById);
 router.get('/title/:title', MovieController.getByTitle);
-router.post('/topRated', MovieController.getTopRated);
+router.get('/topRated', MovieController.getTopRated);
 router.get('/genre/:genre', MovieController.getByGenre);
 
 module.exports = router;
