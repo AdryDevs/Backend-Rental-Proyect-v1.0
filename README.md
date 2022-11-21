@@ -1,36 +1,34 @@
-# Express API Sequelize + Mysql
+Rental project (only backend) 
 
-## COMANDOS BÁSICOS
-<br>
+Used technologies:
 
-![image](https://user-images.githubusercontent.com/16636086/138618084-e6776834-ff59-4763-9489-98afb98b9283.png)
+    - Express
+    -MySQL
+    -JavaScript
+    -Node
+    -Sequelize
+
+How to run the project:
+
+npm install (in order to install everything you need in order to run the project)
+
+npm run dev (in order to run the project)
+
+The project is running on port 3000, so you can access it by typing localhost:3000 in your browser.
+
+The project is using MySQL database, so you need to create a database called "rental" and then run the following command in order to create the tables:
+
+npx sequelize-cli db:migrate
+
+The project is using JWT for authentication, so you need to create a user in order to get a token. You can post the following body to localhost:3000/users/signup in order to create a user:
+
+{
+    "name": "your name",
+    "email": "your email"
+}
+
+You will receive a token in the response, which you need to use in order to access the other routes. You can use the following body to localhost:3000/users/signin in order to login.
+
+Once logged in, you can use the token in the Authorization header in order to access the other routes.
 
 
-```
-npm init
-npm install
-npm update
-npm run dev
-npm run start
-
-npm install sequelize-cli -g
-npm install --save sequelize mysql2 sequelize-cli
-sequelize
-sequelize init
-sequelize model:generate --name movie --attributes title:string
-sequelize model:generate --name category --attributes type:string, age:integer
-sequelize db:create
-sequelize db:migrate
-
-sequelize db:migrate:undo
-sequelize db:migrate:undo:all
-
-sequelize seed:generate --name demo-movie
-sequelize seed:generate --name demo-category
-sequelize db:seed:all
-sequelize db:seed:undo
-sequelize db:seed:undo:all
-```
-
-
-registro, login y middleware de autenticación con JWT
