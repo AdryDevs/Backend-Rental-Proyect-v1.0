@@ -31,4 +31,6 @@ You will receive a token in the response, which you need to use in order to acce
 
 Once logged in, you can use the token in the Authorization header in order to access the other routes.
 
+The .env file is not included in the project, it will be sent to you separately.
+
 
