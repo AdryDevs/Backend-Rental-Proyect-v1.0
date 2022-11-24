@@ -21,7 +21,7 @@ const AuthController = {};
           res.status(401).json({ message: "Password or email not valid" });
           return;
         }
-      
+      console.log(userFound);
         const secret = process.env.JWT_SECRET || '';
       
         if (secret.length < 1) {
@@ -29,16 +29,16 @@ const AuthController = {};
         }
       
       /* Creating a JWT token. */
-        jwt.sign({
+        const token = jwt.sign({
           id: userFound.id,
           email: userFound.email,
           created: Date.now(),
           role: userFound.id_rol
-        }, secret);
+        }, "hola");
       
         res.status(200).json({
           message: "You are logged in",
-          jwt: jwt,
+          jwt: token,
         });
       
       }

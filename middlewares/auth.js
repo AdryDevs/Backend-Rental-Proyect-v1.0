@@ -12,18 +12,18 @@ module.exports = (req, res, next) => {
         // Check if the token is valid
         let token = req.headers.authorization.split(" ")[1];
 
-        jwt.verify(token, authConfig.secret, (err, decoded) => {
-
+        jwt.verify(token, "hola", (err, decoded) => {
+            console.log(decoded);
             if(err) {
                 res.status(500).json({ msg: "Not a valid token", err });}
-            //  else {
+             else {
                 
-            //     user.findByPk(decoded.user.id, { include: "roles" }).then(user => {
-            //         //console.log(user.roles);
-            //         req.user = user;
-            //         next();
-            //     });
-            // }
+                user.findByPk(decoded.user.id).then(user => {
+                    //console.log(user.roles);
+                    req.user = user;
+                    next();
+                });
+            }
 
         })
     }

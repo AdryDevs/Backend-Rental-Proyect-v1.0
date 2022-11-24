@@ -6,7 +6,7 @@ const { application } = require('express');
 const MovieRouter = require('./views/MovieRouter');
 const TvShowRouter = require('./views/TvShowRouter');
 const UserRouter = require('./views/UserRouter');
-
+const OrderRouter = require('./views/OrderRouter');
 
 
 //Middlewares
@@ -17,6 +17,7 @@ const auth = require('./middlewares/auth');
 router.use('/movies', auth, MovieRouter);
 router.use('/tvshows', auth, TvShowRouter);
 router.use('/users', UserRouter);
+router.use('/order', OrderRouter);
 
 
 module.exports = router;
