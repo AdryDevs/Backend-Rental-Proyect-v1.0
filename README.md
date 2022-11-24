@@ -43,4 +43,64 @@ POST - localhost:3000/auth/signin - { "email": "root@email.com",  "password": "p
 
 	- Home
 GET - localhost:3000
+
+
+    MOVIES ENDPOINTS:
+
+    - Get all movies
+
+GET - localhost:3000/movies
+
+    - Get movie by id
+
+GET - localhost:3000/byId/:id
+
+    - Get all movies by genre
+
+GET - localhost:3000/movies/genre/:genre
+
+    - Get all movies by title
+
+GET - localhost:3000/movies/title/:title
+
+    - Get all movies by title
+
+GET - localhost:3000/movies/title/:title
 	
+
+    TVSHOWS ENDPOINTS:
+
+    - Get all tvshows
+
+GET - localhost:3000/tvshows
+
+    - Get tvshow by id
+
+GET - localhost:3000/tvshows/:id
+
+    - Get all tvshows by title
+
+GET - localhost:3000/tvshows/name/:title
+
+    - Get all tvshows by top rated
+
+GET - localhost:3000/tvshows/topRated
+
+    - Get all tvshows upcoming in the next 7 days
+
+GET - localhost:3000/tvshows/next7Days
+
+    ORDERS ENDPOINTS:
+
+    - Post order
+
+POST - localhost:3000/order
+
+    - Update order by id
+
+PUT - localhost:3000/order/:id
+
+    - Order by user
+
+GET - localhost:3000/order/user
+
