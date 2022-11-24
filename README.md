@@ -94,11 +94,11 @@ GET - localhost:3000/tvshows/next7Days
 
     - Post order
 
-POST - localhost:3000/order
+POST - localhost:3000/order  - { "movieId": "1", "userId": "1" }
 
     - Update order by id
 
-PUT - localhost:3000/order/:id
+PUT - localhost:3000/order/:id  - { "orderId": "1", "userId": "1" }
 
     - Order by user
 
