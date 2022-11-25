@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('users', {
+    await queryInterface.createTable('user', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -15,7 +15,7 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      id_role: {
+      roleId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -27,10 +27,10 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
-    await queryInterface.addConstraint('users', {
-      fields: ['id_role'],
+    await queryInterface.addConstraint('user', {
+      fields: ['roleId'],
       type: 'foreign key',
-      name: 'fkey_id_role',
+      name: 'fkey_roleId',
       references: {
         table: 'roles',
         field: 'id'
@@ -40,6 +40,6 @@ module.exports = {
 });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('user');
   }
 };

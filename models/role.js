@@ -19,8 +19,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
     },
-    role_name: DataTypes.STRING
-  }, {
+    role_name: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
+  },
+  {
     sequelize,
     modelName: 'role',
   });

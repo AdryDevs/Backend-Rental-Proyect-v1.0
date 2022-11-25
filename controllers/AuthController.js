@@ -46,18 +46,22 @@ const AuthController = {};
 //Register new user and create token
 
 AuthController.signUp = async (req, res) => {
-    const { email } = req.body;
+    const { email, password } = req.body;
+
+    if (await models.user.findOne({ where: { email:email } })) {
+      return res.status(400).send({ error: 'User already exists' });
+  }   
 
     try {
 
-        if (await models.user.findOne({ where: { email:email } })) {
-            return res.status(400).send({ error: 'User already exists' });
-        }        
-        const hashedPassword = await bcrypt.hash(req.body.password, 8);
+      
+  
+        const hashedPassword = await bcrypt.hash(password, 8);
         
+      
         
         const user = await models.user.create ({
-            email: req.body.email,
+            email,
             password: hashedPassword
         });
 
