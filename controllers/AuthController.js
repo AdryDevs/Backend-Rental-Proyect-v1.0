@@ -34,7 +34,7 @@ const AuthController = {};
           email: userFound.email,
           created: Date.now(),
           role: userFound.id_rol
-        }, "hola");
+        }, authConfig.secret);
       
         res.status(200).json({
           message: "You are logged in",

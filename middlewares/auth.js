@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
         // Check if the token is valid
         let token = req.headers.authorization.split(" ")[1];
 
-        jwt.verify(token, "hola", (err, decoded) => {
+        jwt.verify(token, authConfig.secret, (err, decoded) => {
             console.log(decoded);
             if(err) {
                 res.status(500).json({ msg: "Not a valid token", err });}

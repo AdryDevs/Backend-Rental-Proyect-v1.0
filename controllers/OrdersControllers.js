@@ -9,7 +9,7 @@ const OrderController = {};
     //Order a movie or a tv show
 
     OrderController.order = (req, res) => { 
-        if (!req.body.movieId) {
+        if (!req.body.articleId) {
         res.status(400).send({
             message: "Content is empty"
         });
@@ -17,9 +17,9 @@ const OrderController = {};
         }
         
         const order = {
-        movieId: req.body.movieId,
-        userId: req.userId,
-        status: req.body.status ? req.body.status : false
+        articleId: req.body.articleId,
+        id_user: req.body.id_user,
+
         };
         
         orders.create(order)
