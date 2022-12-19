@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, INTEGER
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class order extends Model {
@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      order.hasOne(models.article, {foreignKey: 'id'});
-      order.hasOne(models.user, {foreignKey: 'id'});
+      order.belongsTo(models.article);
+      order.belongsTo(models.user);
     }
   }
   order.init({
@@ -20,9 +20,8 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    date: DataTypes.DATEONLY,
-    articleId: DataTypes.INTEGER,
-    id_user: DataTypes.INTEGER
+    id_user: DataTypes.INTEGER,
+    date: DataTypes.DATEONLY
   }, {
     sequelize,
     modelName: 'order',

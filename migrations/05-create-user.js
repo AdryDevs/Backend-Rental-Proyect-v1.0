@@ -9,16 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       email: {
         type: Sequelize.STRING
       },
       password: {
         type: Sequelize.STRING
       },
-      id_role: {
+      roleId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -31,9 +28,9 @@ module.exports = {
       }
     });
     await queryInterface.addConstraint('users', {
-      fields: ['id_role'],
+      fields: ['roleId'],
       type: 'foreign key',
-      name: 'fkey_id_role',
+      name: 'fkey_roleId',
       references: {
         table: 'roles',
         field: 'id'

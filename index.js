@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const logger = require('./config/winston');
 const db = require('./db.js');
 const router = require('./router.js');
+const { sequelize } = require('./models');
 // const cors = require("cors");
 
 const app = express();
@@ -27,7 +28,8 @@ app.use(router);
 
 //Connecting to the database
 db.then(()=>{
-    //Starting server
+    //Starting server 
+    // sequelize.sync ({ force: true }) 
         app.listen(PORT, ()=> console.log(`Server successfully connected on PORT ${PORT}`.blue));
     })
     .catch((err)=> console.log(err.message));   
