@@ -22,7 +22,7 @@ const AuthController = {};
           return;
         }
       console.log(userFound);
-        const secret = process.env.JWT_SECRET || '';
+        const secret = process.env.JWT_SECRET || 'hola';
       
         if (secret.length < 1) {
           throw new Error("JWT_SECRET is not set");
@@ -61,7 +61,7 @@ AuthController.signUp = async (req, res) => {
             password: hashedPassword
         });
 
-        const token = jwt.sign({ id: user.id }, authConfig.secret, {
+        const token = jwt.sign({ id: user.id }, "hola", {
             expiresIn: authConfig.expires
         });
 

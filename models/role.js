@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
     },
     role_name: DataTypes.STRING
   }, {
